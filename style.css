@@ -35,7 +35,6 @@ body {
   height: 20px;
   border-radius: 50% 50% 50% 0;
   pointer-events: none;
-  opacity: 0;
 }
 
 @keyframes fall-a {
@@ -232,11 +231,11 @@ body {
   padding: 5rem 1.5rem;
   background: linear-gradient(180deg, #fff0f7 0%, #ffe0f0 100%);
   position: relative;
-  z-index: 1;
+  z-index: 10;
   text-align: center;
 }
 
-/* ── Envelope ──────────────────────────────── */
+/* ── Envelope (simple card, no border tricks) ── */
 .envelope-wrapper {
   display: flex;
   justify-content: center;
@@ -245,61 +244,41 @@ body {
 
 .envelope {
   width: 290px;
-  background: linear-gradient(160deg, #fff0f7, #ffd6ec);
+  border-radius: 14px;
   border: 2px solid #ffb3d9;
-  border-radius: 0 0 10px 10px;
-  position: relative;
+  overflow: hidden;
   cursor: pointer;
   box-shadow: 0 10px 35px rgba(233,30,140,0.25);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-}
-
-.envelope:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 45px rgba(233,30,140,0.35);
-}
-
-/* Top flap triangle */
-.env-flap {
-  width: 0;
-  height: 0;
-  border-left: 145px solid transparent;
-  border-right: 145px solid transparent;
-  border-top: 95px solid #f098c0;
+  transition: transform 0.25s, box-shadow 0.25s;
   position: relative;
-  z-index: 2;
-  transform-origin: top center;
-  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  z-index: 11;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Flap open state */
-.envelope.open .env-flap {
-  transform: rotateX(180deg);
+.envelope:active { transform: scale(0.97); }
+
+/* Decorative top flap (solid div, no border tricks) */
+.env-flap {
+  background: linear-gradient(160deg, #f098c0, #e0609a);
+  height: 90px;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
-/* Bottom triangle fold */
+/* Bottom accent bar */
 .env-flap-bottom {
-  width: 0;
-  height: 0;
-  border-left: 145px solid transparent;
-  border-right: 145px solid transparent;
-  border-bottom: 80px solid #f5c0de;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
+  height: 12px;
+  background: linear-gradient(90deg, #f098c0, #ffb3d9, #f098c0);
 }
 
-/* Main body of envelope */
+/* Center body */
 .env-center {
-  padding: 1.8rem 1rem 2.5rem;
+  background: linear-gradient(180deg, #fff0f7, #ffeaf5);
+  padding: 1.6rem 1rem 1.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  position: relative;
-  z-index: 3;
 }
 
 .env-heart {
