@@ -1,38 +1,3 @@
-/* ── Falling Petals (CSS shapes, no emoji) ──── */
-(function () {
-  var container = document.getElementById('petals');
-  var colors    = ['#e91e8c','#ff6eb4','#ff4081','#f48fb1','#c2185b','#ffb3d9','#ff80ab'];
-  var anims     = ['fall-a','fall-b','fall-c'];
-
-  function spawnPetal() {
-    var el       = document.createElement('div');
-    var duration = (Math.random() * 5 + 7).toFixed(1);
-    var w        = (Math.random() * 8 + 8)  | 0;   /* 8–16px */
-    var h        = (Math.random() * 10 + 14)| 0;   /* 14–24px */
-    var left     = (Math.random() * 100).toFixed(1);
-    var color    = colors[Math.floor(Math.random() * colors.length)];
-    var anim     = anims [Math.floor(Math.random() * anims.length)];
-    /* Vary shape: petal, circle, or teardrop */
-    var radii    = ['50% 50% 50% 0','50% 50% 0 50%','50%','60% 40% 60% 40%'];
-    var radius   = radii[Math.floor(Math.random() * radii.length)];
-
-    el.className          = 'petal-js';
-    el.style.left         = left + 'vw';
-    el.style.width        = w + 'px';
-    el.style.height       = h + 'px';
-    el.style.background   = color;
-    el.style.borderRadius = radius;
-    el.style.boxShadow    = '0 1px 4px rgba(0,0,0,0.12)';
-    el.style.animation    = anim + ' ' + duration + 's ease-in forwards';
-
-    container.appendChild(el);
-    setTimeout(function () { el.remove(); }, (parseFloat(duration) + 1) * 1000);
-  }
-
-  for (var i = 0; i < 12; i++) setTimeout(spawnPetal, i * 180);
-  setInterval(spawnPetal, 650);
-})();
-
 
 /* ── Envelope Open ──────────────────────────── */
 (function () {

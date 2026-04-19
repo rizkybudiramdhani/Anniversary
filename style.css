@@ -19,46 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Falling Petals ──────────────────────────── */
-.petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.petal-js {
-  position: absolute;
-  top: -20px;
-  width: 12px;
-  height: 20px;
-  border-radius: 50% 50% 50% 0;
-  pointer-events: none;
-}
-
-@keyframes fall-a {
-  0%   { transform: translateY(0)    translateX(0)    rotate(0deg);   opacity: 0.85; }
-  50%  { transform: translateY(50vh) translateX(28px) rotate(180deg); opacity: 0.7;  }
-  100% { transform: translateY(110vh)translateX(-5px) rotate(360deg); opacity: 0;    }
-}
-@keyframes fall-b {
-  0%   { transform: translateY(0)    translateX(0)     rotate(20deg);  opacity: 0.85; }
-  50%  { transform: translateY(50vh) translateX(-22px) rotate(200deg); opacity: 0.7;  }
-  100% { transform: translateY(110vh)translateX(8px)   rotate(400deg); opacity: 0;    }
-}
-@keyframes fall-c {
-  0%   { transform: translateY(0)    translateX(0)    rotate(-15deg); opacity: 0.85; }
-  30%  { transform: translateY(30vh) translateX(18px) rotate(100deg); opacity: 0.8;  }
-  70%  { transform: translateY(75vh) translateX(-12px)rotate(260deg); opacity: 0.6;  }
-  100% { transform: translateY(110vh)translateX(4px)  rotate(380deg); opacity: 0;    }
-}
-
-@keyframes fall {
-  0%   { transform: translateY(-60px) rotate(0deg);    opacity: 0.9; }
-  80%  { opacity: 0.7; }
-  100% { transform: translateY(110vh) rotate(360deg);  opacity: 0;   }
-}
 
 /* ── Hero ──────────────────────────────────── */
 .hero {
