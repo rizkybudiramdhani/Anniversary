@@ -642,3 +642,25 @@ body {
   .letter-paper        { padding: 1.5rem 1rem; }
   .names               { gap: 0.2rem; }
 }
+
+/* ── Video Section ──────────────────────────── */
+.video-section {
+  padding: 5rem 1.5rem;
+  text-align: center;
+  background: var(--pink-pale);
+}
+
+.video-wrapper {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(233, 30, 140, 0.18);
+  border: 2px solid var(--pink-light);
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
