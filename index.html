@@ -43,19 +43,19 @@
     <!-- Envelope -->
     <div class="envelope-wrapper" id="envelopeWrapper">
       <div class="envelope" id="envelope">
-        <div class="env-flap" id="envFlap"></div>
-        <div class="env-left"></div>
-        <div class="env-right"></div>
-        <div class="env-bottom"></div>
-        <div class="env-body">
-          <div class="env-heart">💌</div>
+        <!-- flap top -->
+        <div class="env-flap"></div>
+        <!-- flap bottom -->
+        <div class="env-flap-bottom"></div>
+        <div class="env-center">
+          <span class="env-heart">💌</span>
           <p class="env-hint">Ketuk untuk membuka surat</p>
         </div>
       </div>
     </div>
 
     <!-- Letter content (hidden until envelope opens) -->
-    <div class="letter-paper" id="letterContent">
+    <div class="letter-paper" id="letterContent" style="display:none">
       <p class="letter-date">20 April 2026</p>
       <p class="letter-to">Untuk Fitri Sofia Alfian, perempuan yang aku cintai,</p>
       <div class="letter-body">
@@ -162,8 +162,6 @@
     </p>
   </section>
 
-  <!-- GSAP library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

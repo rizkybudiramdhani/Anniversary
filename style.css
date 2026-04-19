@@ -231,94 +231,79 @@ body {
 }
 
 .envelope {
-  width: 300px;
-  height: 200px;
+  width: 290px;
   background: linear-gradient(160deg, #fff0f7, #ffd6ec);
   border: 2px solid #ffb3d9;
-  border-radius: 6px;
+  border-radius: 0 0 10px 10px;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 10px 35px rgba(233,30,140,0.2);
-  transition: box-shadow 0.3s, transform 0.2s;
-  overflow: visible;
+  box-shadow: 0 10px 35px rgba(233,30,140,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
 }
 
 .envelope:hover {
-  box-shadow: 0 14px 45px rgba(233,30,140,0.35);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 45px rgba(233,30,140,0.35);
 }
 
-/* Flap (top triangle) — rotated by GSAP on open */
+/* Top flap triangle */
 .env-flap {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: calc(100% + 4px);
-  height: 106px;
-  background: linear-gradient(170deg, #ffb3d9, #f07ab0);
-  clip-path: polygon(0 0, 50% 62%, 100% 0);
-  border-radius: 6px 6px 0 0;
-  z-index: 3;
-  transform-style: preserve-3d;
+  width: 0;
+  height: 0;
+  border-left: 145px solid transparent;
+  border-right: 145px solid transparent;
+  border-top: 95px solid #f098c0;
+  position: relative;
+  z-index: 2;
+  transform-origin: top center;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* Left bottom triangle */
-.env-left {
+/* Flap open state */
+.envelope.open .env-flap {
+  transform: rotateX(180deg);
+}
+
+/* Bottom triangle fold */
+.env-flap-bottom {
+  width: 0;
+  height: 0;
+  border-left: 145px solid transparent;
+  border-right: 145px solid transparent;
+  border-bottom: 80px solid #f5c0de;
   position: absolute;
-  bottom: 0; left: 0;
-  width: 0; height: 0;
-  border-bottom: 110px solid #f5b8d8;
-  border-right: 150px solid transparent;
-  border-radius: 0 0 0 6px;
+  bottom: 0;
+  left: 0;
   z-index: 1;
 }
 
-/* Right bottom triangle */
-.env-right {
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 0; height: 0;
-  border-bottom: 110px solid #f5b8d8;
-  border-left: 150px solid transparent;
-  border-radius: 0 0 6px 0;
-  z-index: 1;
-}
-
-/* Bottom center diamond */
-.env-bottom {
-  position: absolute;
-  bottom: -2px; left: -2px;
-  width: calc(100% + 4px);
-  height: 108px;
-  background: #ffd6ec;
-  clip-path: polygon(0 100%, 50% 38%, 100% 100%);
-  border-radius: 0 0 6px 6px;
-  z-index: 0;
-}
-
-/* Center content */
-.env-body {
-  position: absolute;
-  inset: 0;
+/* Main body of envelope */
+.env-center {
+  padding: 1.8rem 1rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 2;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 3;
 }
 
-.env-heart { font-size: 2.2rem; }
-.env-hint  {
-  font-size: 0.82rem;
+.env-heart {
+  font-size: 3rem;
+  display: block;
+  animation: beat 1.4s ease-in-out infinite;
+}
+
+.env-hint {
+  font-size: 0.85rem;
   color: #c0006e;
   font-style: italic;
   letter-spacing: 0.5px;
 }
 
-/* Letter paper (hidden initially) */
+/* Letter paper */
 .letter-paper {
-  display: none;
   max-width: 680px;
   margin: 2.5rem auto 0;
   background: var(--white);
