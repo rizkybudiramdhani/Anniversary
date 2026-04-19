@@ -651,26 +651,23 @@ body {
 }
 
 .video-wrapper {
-  max-width: 380px;
-  width: 100%;
+  width: 260px;
   margin: 2rem auto 0;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(233, 30, 140, 0.18);
   border: 2px solid var(--pink-light);
+  background: #000;
 }
 
 .video-wrapper video {
-  width: 100%;
+  width: 260px;
+  height: 460px;
   display: block;
-  background: #000;
-  max-height: 70vh;
-  object-fit: contain;
+  object-fit: cover;
 }
 
-@media (max-width: 480px) {
-  .video-wrapper {
-    max-width: 100%;
-    border-radius: 14px;
-  }
+@media (max-width: 360px) {
+  .video-wrapper,
+  .video-wrapper video { width: 230px; height: 408px; }
 }
