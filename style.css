@@ -380,7 +380,70 @@ body {
 }
 
 /* ── Responsive ────────────────────────────── */
-@media (max-width: 600px) {
-  .letter-paper { padding: 2rem 1.4rem; }
-  .names        { flex-direction: column; gap: 0.4rem; }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero-content        { padding: 2rem 1.2rem; }
+  .reasons-grid        { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .letter-paper        { padding: 2.5rem 2rem; }
+  .milestone-section,
+  .letter-section,
+  .reasons-section,
+  .closing-section     { padding: 4rem 1.2rem; }
+  .milestone-sub       { font-size: 0.93rem; }
+}
+
+/* Handphone */
+@media (max-width: 480px) {
+  /* Hero */
+  .hero-content        { padding: 2rem 1rem; }
+  .subtitle            { font-size: 0.85rem; letter-spacing: 1.5px; }
+  .main-title          { font-size: clamp(2rem, 11vw, 2.8rem); margin-bottom: 1rem; }
+  .names               { flex-direction: column; gap: 0.3rem; }
+  .name                { font-size: clamp(0.95rem, 4.5vw, 1.2rem); }
+  .heart-icon          { font-size: 1.6rem; }
+  .date                { font-size: 0.8rem; letter-spacing: 1.5px; margin-bottom: 2rem; }
+  .scroll-btn          { padding: 0.65rem 1.8rem; font-size: 0.85rem; letter-spacing: 1px; }
+
+  /* Milestone */
+  .milestone-section   { padding: 3.5rem 1rem; }
+  .milestone-number    { font-size: clamp(5rem, 28vw, 8rem); }
+  .milestone-label     { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  .milestone-sub       { font-size: 0.88rem; padding: 0 0.5rem; }
+
+  /* Section titles */
+  .section-title       { font-size: clamp(1.4rem, 5.5vw, 1.9rem); }
+  .section-sub         { font-size: 0.88rem; margin-bottom: 2rem; padding: 0 0.5rem; }
+
+  /* Letter */
+  .letter-section      { padding: 3.5rem 1rem; }
+  .letter-paper        { padding: 1.8rem 1.2rem; margin-top: 1.5rem; }
+  .letter-to           { font-size: 0.95rem; }
+  .letter-body p       { font-size: 0.95rem; }
+  .letter-from         { font-size: 0.9rem; }
+  .letter-from strong  { font-size: 1rem; }
+
+  /* Reasons */
+  .reasons-section     { padding: 3.5rem 1rem; }
+  .reasons-grid        { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .reason-card         { padding: 1.4rem 0.8rem; }
+  .reason-icon         { font-size: 1.8rem; }
+  .reason-card p       { font-size: 0.85rem; }
+
+  /* Closing */
+  .closing-section     { padding: 4rem 1rem; }
+  .big-heart           { font-size: 4rem; }
+  .closing-names       { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .closing-msg         { font-size: 1.1rem; }
+  .closing-quote       { font-size: 0.9rem; }
+  .closing-quote br    { display: none; }
+}
+
+/* Very small phones (≤360px) */
+@media (max-width: 360px) {
+  .main-title          { font-size: 1.9rem; }
+  .reasons-grid        { grid-template-columns: 1fr; }
+  .reason-card         { padding: 1.2rem 1rem; }
+  .letter-paper        { padding: 1.5rem 1rem; }
+  .names               { gap: 0.2rem; }
 }
