@@ -9,21 +9,8 @@
 </head>
 <body>
 
-  <!-- Petals (CSS only) -->
-  <div class="petals">
-    <span class="petal p1">🌸</span>
-    <span class="petal p2">🌹</span>
-    <span class="petal p3">💗</span>
-    <span class="petal p4">✨</span>
-    <span class="petal p5">🌷</span>
-    <span class="petal p6">💕</span>
-    <span class="petal p7">🌸</span>
-    <span class="petal p8">🌹</span>
-    <span class="petal p9">💗</span>
-    <span class="petal p10">✨</span>
-    <span class="petal p11">🌷</span>
-    <span class="petal p12">💕</span>
-  </div>
+  <!-- Petals container (JS will spawn them) -->
+  <div class="petals" id="petals"></div>
 
   <!-- ── HERO ── -->
   <section class="hero">
@@ -36,7 +23,7 @@
         <span class="name">Fitri Sofia Alfian</span>
       </div>
       <p class="date">20 April 2024 — 20 April 2026</p>
-      <a href="#letter" class="scroll-btn">Baca Suratku ↓</a>
+      <a href="#letter" class="scroll-btn">Baca Suratku 💌</a>
     </div>
   </section>
 
@@ -52,18 +39,34 @@
   <!-- ── SURAT ── -->
   <section class="letter-section" id="letter">
     <h2 class="section-title">Surat Untukmu 💌</h2>
-    <div class="letter-paper">
+
+    <!-- Envelope -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope" id="envelope">
+        <div class="env-flap" id="envFlap"></div>
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-bottom"></div>
+        <div class="env-body">
+          <div class="env-heart">💌</div>
+          <p class="env-hint">Ketuk untuk membuka surat</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letter content (hidden until envelope opens) -->
+    <div class="letter-paper" id="letterContent">
       <p class="letter-date">20 April 2026</p>
-      <p class="letter-to">Untuk Rizky Budi Ramdhani, pria yang aku cintai,</p>
+      <p class="letter-to">Untuk Fitri Sofia Alfian, perempuan yang aku cintai,</p>
       <div class="letter-body">
         <p>
           Dua tahun sudah kita lalui bersama, dan setiap harinya selalu terasa seperti hadiah yang paling berharga. Terima kasih sudah hadir, sudah sabar, dan sudah mau menerimaku apa adanya sejak hari pertama.
         </p>
         <p>
-          Terima kasih untuk setiap tawa yang kamu berikan, untuk setiap perjalanan kecil yang kita jadikan kenangan indah. Terima kasih sudah menjadi tempatku pulang di hari-hari yang berat, dan menjadi alasanku tersenyum di pagi hari.
+          Terima kasih untuk setiap tawa yang kamu berikan, untuk setiap perjalanan kecil yang kita jadikan kenangan indah. Terima kasih sudah menjadi tempatku pulang di hari-hari yang berat, dan menjadi alasanku tersenyum di setiap pagi.
         </p>
         <p>
-          Kamu bukan hanya pacarku — kamu adalah sahabatku, penyemangatku, dan orang yang paling aku percaya. Dua tahun bersama kamu mengajarkan aku arti cinta yang sesungguhnya.
+          Kamu bukan hanya pacarku — kamu adalah sahabatku, penyemangatku, dan orang yang paling aku percaya. Dua tahun bersamamu mengajarkan aku arti cinta yang sesungguhnya.
         </p>
         <p>
           Selamat dua tahun, Sayang. Semoga kita terus tumbuh bersama, melewati setiap tantangan, dan menciptakan ribuan kenangan indah lainnya hingga selamanya.
@@ -72,7 +75,7 @@
       </div>
       <p class="letter-from">
         Dengan sepenuh hati,<br />
-        <strong>Fitri Sofia Alfian</strong>
+        <strong>Rizky Budi Ramdhani</strong>
       </p>
     </div>
   </section>
@@ -103,9 +106,14 @@
         <div class="photo-caption">Petualangan kecil kita berdua 🏍️</div>
       </div>
 
-      <div class="photo-card photo-card--wide">
+      <div class="photo-card">
         <img src="images/photo5.jpg" alt="Malam bersama" loading="lazy" />
-        <div class="photo-caption">Malam-malam yang selalu aku kenang 🌙</div>
+        <div class="photo-caption">Momen hangat yang selalu aku kenang 🌙</div>
+      </div>
+
+      <div class="photo-card photo-card--wide">
+        <img src="images/photo6.jpg" alt="Fitri" loading="lazy" />
+        <div class="photo-caption">Kamu selalu cantik di mataku 💖</div>
       </div>
 
     </div>
@@ -154,5 +162,8 @@
     </p>
   </section>
 
+  <!-- GSAP library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

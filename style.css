@@ -19,7 +19,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Falling Petals (CSS only) ─────────────── */
+/* ── Falling Petals (JS-spawned) ────────────── */
 .petals {
   position: fixed;
   inset: 0;
@@ -28,27 +28,19 @@ body {
   overflow: hidden;
 }
 
-.petal {
+.petal-js {
   position: absolute;
   top: -60px;
-  font-size: 1.4rem;
-  opacity: 0.8;
-  animation: fall linear infinite;
+  animation: fall linear forwards;
+  user-select: none;
 }
 
-/* Individual positions & timing */
-.p1  { left:  5%; animation-duration: 10s; animation-delay:  0s;  font-size: 1.2rem; }
-.p2  { left: 14%; animation-duration:  8s; animation-delay:  2s; }
-.p3  { left: 23%; animation-duration: 12s; animation-delay:  1s;  font-size: 1rem;   }
-.p4  { left: 32%; animation-duration:  9s; animation-delay:  4s; }
-.p5  { left: 41%; animation-duration: 11s; animation-delay:  0.5s;}
-.p6  { left: 50%; animation-duration:  7s; animation-delay:  3s;  font-size: 1.6rem; }
-.p7  { left: 59%; animation-duration: 13s; animation-delay:  1.5s;}
-.p8  { left: 68%; animation-duration:  8s; animation-delay:  5s;  font-size: 1rem;   }
-.p9  { left: 77%; animation-duration: 10s; animation-delay:  2.5s;}
-.p10 { left: 85%; animation-duration:  9s; animation-delay:  0.8s;}
-.p11 { left: 92%; animation-duration: 11s; animation-delay:  3.5s; font-size: 1.6rem;}
-.p12 { left: 20%; animation-duration: 14s; animation-delay:  6s; }
+@keyframes sway {
+  0%   { margin-left: 0; }
+  25%  { margin-left: 30px; }
+  75%  { margin-left: -30px; }
+  100% { margin-left: 0; }
+}
 
 @keyframes fall {
   0%   { transform: translateY(-60px) rotate(0deg);    opacity: 0.9; }
@@ -228,9 +220,105 @@ body {
   background: linear-gradient(180deg, #fff0f7 0%, #ffe0f0 100%);
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
+/* ── Envelope ──────────────────────────────── */
+.envelope-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem auto 0;
+}
+
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(160deg, #fff0f7, #ffd6ec);
+  border: 2px solid #ffb3d9;
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(233,30,140,0.2);
+  transition: box-shadow 0.3s, transform 0.2s;
+  overflow: visible;
+}
+
+.envelope:hover {
+  box-shadow: 0 14px 45px rgba(233,30,140,0.35);
+  transform: translateY(-4px);
+}
+
+/* Flap (top triangle) — rotated by GSAP on open */
+.env-flap {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: 106px;
+  background: linear-gradient(170deg, #ffb3d9, #f07ab0);
+  clip-path: polygon(0 0, 50% 62%, 100% 0);
+  border-radius: 6px 6px 0 0;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+
+/* Left bottom triangle */
+.env-left {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-bottom: 110px solid #f5b8d8;
+  border-right: 150px solid transparent;
+  border-radius: 0 0 0 6px;
+  z-index: 1;
+}
+
+/* Right bottom triangle */
+.env-right {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-bottom: 110px solid #f5b8d8;
+  border-left: 150px solid transparent;
+  border-radius: 0 0 6px 0;
+  z-index: 1;
+}
+
+/* Bottom center diamond */
+.env-bottom {
+  position: absolute;
+  bottom: -2px; left: -2px;
+  width: calc(100% + 4px);
+  height: 108px;
+  background: #ffd6ec;
+  clip-path: polygon(0 100%, 50% 38%, 100% 100%);
+  border-radius: 0 0 6px 6px;
+  z-index: 0;
+}
+
+/* Center content */
+.env-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  gap: 0.4rem;
+}
+
+.env-heart { font-size: 2.2rem; }
+.env-hint  {
+  font-size: 0.82rem;
+  color: #c0006e;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Letter paper (hidden initially) */
 .letter-paper {
+  display: none;
   max-width: 680px;
   margin: 2.5rem auto 0;
   background: var(--white);
@@ -240,6 +328,7 @@ body {
   border-top: 5px solid var(--pink);
   position: relative;
   line-height: 1.9;
+  text-align: left;
 }
 
 .letter-paper::before {
@@ -300,15 +389,15 @@ body {
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
   gap: 1rem;
   max-width: 960px;
   margin: 0 auto;
 }
 
-/* Foto ke-5 melebar 2 kolom di tengah */
+/* Foto ke-6 melebar penuh */
 .photo-card--wide {
-  grid-column: 2 / 4;
+  grid-column: 1 / 4;
+  aspect-ratio: 16 / 7;
 }
 
 .photo-card {
