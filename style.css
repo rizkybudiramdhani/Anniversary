@@ -645,13 +645,14 @@ body {
 
 /* ── Video Section ──────────────────────────── */
 .video-section {
-  padding: 5rem 1.5rem;
+  padding: 4rem 1rem;
   text-align: center;
   background: var(--pink-pale);
 }
 
 .video-wrapper {
-  max-width: 600px;
+  max-width: 380px;
+  width: 100%;
   margin: 2rem auto 0;
   border-radius: 20px;
   overflow: hidden;
@@ -663,4 +664,13 @@ body {
   width: 100%;
   display: block;
   background: #000;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .video-wrapper {
+    max-width: 100%;
+    border-radius: 14px;
+  }
 }
