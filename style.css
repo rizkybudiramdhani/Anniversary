@@ -19,42 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Falling Petals (CSS only) ─────────────── */
-.petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: -60px;
-  font-size: 1.4rem;
-  opacity: 0.8;
-  animation: fall linear infinite;
-}
-
-/* Individual positions & timing */
-.p1  { left:  5%; animation-duration: 10s; animation-delay:  0s;  font-size: 1.2rem; }
-.p2  { left: 14%; animation-duration:  8s; animation-delay:  2s; }
-.p3  { left: 23%; animation-duration: 12s; animation-delay:  1s;  font-size: 1rem;   }
-.p4  { left: 32%; animation-duration:  9s; animation-delay:  4s; }
-.p5  { left: 41%; animation-duration: 11s; animation-delay:  0.5s;}
-.p6  { left: 50%; animation-duration:  7s; animation-delay:  3s;  font-size: 1.6rem; }
-.p7  { left: 59%; animation-duration: 13s; animation-delay:  1.5s;}
-.p8  { left: 68%; animation-duration:  8s; animation-delay:  5s;  font-size: 1rem;   }
-.p9  { left: 77%; animation-duration: 10s; animation-delay:  2.5s;}
-.p10 { left: 85%; animation-duration:  9s; animation-delay:  0.8s;}
-.p11 { left: 92%; animation-duration: 11s; animation-delay:  3.5s; font-size: 1.6rem;}
-.p12 { left: 20%; animation-duration: 14s; animation-delay:  6s; }
-
-@keyframes fall {
-  0%   { transform: translateY(-60px) rotate(0deg);    opacity: 0.9; }
-  80%  { opacity: 0.7; }
-  100% { transform: translateY(110vh) rotate(360deg);  opacity: 0;   }
-}
 
 /* ── Hero ──────────────────────────────────── */
 .hero {
@@ -227,9 +191,70 @@ body {
   padding: 5rem 1.5rem;
   background: linear-gradient(180deg, #fff0f7 0%, #ffe0f0 100%);
   position: relative;
-  z-index: 1;
+  z-index: 10;
+  text-align: center;
 }
 
+/* ── Envelope (simple card, no border tricks) ── */
+.envelope-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem auto 0;
+}
+
+.envelope {
+  width: 290px;
+  border-radius: 14px;
+  border: 2px solid #ffb3d9;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(233,30,140,0.25);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  z-index: 11;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope:active { transform: scale(0.97); }
+
+/* Decorative top flap (solid div, no border tricks) */
+.env-flap {
+  background: linear-gradient(160deg, #f098c0, #e0609a);
+  height: 90px;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Bottom accent bar */
+.env-flap-bottom {
+  height: 12px;
+  background: linear-gradient(90deg, #f098c0, #ffb3d9, #f098c0);
+}
+
+/* Center body */
+.env-center {
+  background: linear-gradient(180deg, #fff0f7, #ffeaf5);
+  padding: 1.6rem 1rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.env-heart {
+  font-size: 3rem;
+  display: block;
+  animation: beat 1.4s ease-in-out infinite;
+}
+
+.env-hint {
+  font-size: 0.85rem;
+  color: #c0006e;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Letter paper */
 .letter-paper {
   max-width: 680px;
   margin: 2.5rem auto 0;
@@ -240,6 +265,7 @@ body {
   border-top: 5px solid var(--pink);
   position: relative;
   line-height: 1.9;
+  text-align: left;
 }
 
 .letter-paper::before {
@@ -300,15 +326,15 @@ body {
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
   gap: 1rem;
   max-width: 960px;
   margin: 0 auto;
 }
 
-/* Foto ke-5 melebar 2 kolom di tengah */
+/* Foto ke-6 melebar penuh */
 .photo-card--wide {
-  grid-column: 2 / 4;
+  grid-column: 1 / 4;
+  aspect-ratio: 16 / 7;
 }
 
 .photo-card {
@@ -516,10 +542,132 @@ body {
 }
 
 /* Very small phones (≤360px) */
+/* ── Music Card (inside hero) ──────────────── */
+.music-card {
+  max-width: 300px;
+  margin: 1.8rem auto 1.5rem;
+  background: #3d0040;
+  border: 1px solid #ff6eb4;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.music-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  gap: 0.8rem;
+}
+
+.music-left {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.music-note {
+  font-size: 1.4rem;
+  color: var(--pink);
+  animation: beat 1.5s ease-in-out infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.music-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.music-title {
+  color: var(--white);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.music-artist {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+
+.play-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--pink), #c0006e);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(233, 30, 140, 0.55);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  padding-left: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.play-btn:active  { transform: scale(0.9); }
+.play-btn.playing { box-shadow: 0 4px 22px rgba(233,30,140,0.8); }
+
+.music-message {
+  display: none;
+  padding: 0.8rem 1.1rem;
+  border-top: 1px solid rgba(255, 179, 217, 0.2);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.music-message.show {
+  display: block;
+  animation: fadeUp 0.5s ease both;
+}
+
+.music-message em {
+  color: var(--pink-light);
+  font-style: normal;
+  font-weight: 700;
+}
+
 @media (max-width: 360px) {
   .main-title          { font-size: 1.9rem; }
   .reasons-grid        { grid-template-columns: 1fr; }
   .reason-card         { padding: 1.2rem 1rem; }
   .letter-paper        { padding: 1.5rem 1rem; }
   .names               { gap: 0.2rem; }
+}
+
+/* ── Video Section ──────────────────────────── */
+.video-section {
+  padding: 4rem 1rem;
+  text-align: center;
+  background: var(--pink-pale);
+}
+
+.video-wrapper {
+  width: 260px;
+  margin: 2rem auto 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(233, 30, 140, 0.18);
+  border: 2px solid var(--pink-light);
+  background: #000;
+}
+
+.video-wrapper video {
+  width: 260px;
+  height: 460px;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 360px) {
+  .video-wrapper,
+  .video-wrapper video { width: 230px; height: 408px; }
 }
