@@ -2,50 +2,31 @@
 (function () {
   var container = document.getElementById('petals');
   var symbols   = ['🌸','🌹','💗','✨','🌷','💕','🍃','🌺'];
+  var anims     = ['fall-a','fall-b','fall-c'];
 
   function spawnPetal() {
-    var el = document.createElement('span');
-    var duration = (Math.random() * 7 + 6).toFixed(1);
-    var size     = (Math.random() * 1.4 + 0.7).toFixed(1);
-    var startX   = (Math.random() * 110 - 5).toFixed(1);
-    var drift    = (Math.random() * 80 - 40).toFixed(0);
+    var el       = document.createElement('span');
+    var duration = (Math.random() * 6 + 7).toFixed(1);
+    var size     = (Math.random() * 1.2 + 0.8).toFixed(1);
+    var left     = (Math.random() * 100).toFixed(1);
+    var anim     = anims[Math.floor(Math.random() * anims.length)];
 
+    el.className   = 'petal-js';
     el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    el.style.cssText = [
-      'position:absolute',
-      'top:-60px',
-      'left:' + startX + 'vw',
-      'font-size:' + size + 'rem',
-      'opacity:0.85',
-      'pointer-events:none',
-      'user-select:none',
-      'animation:petalFall ' + duration + 's linear forwards'
-    ].join(';');
-
-    /* Unique keyframe per petal for natural sideways drift */
-    var keyId = 'pk' + Date.now() + Math.floor(Math.random()*9999);
-    var style = document.createElement('style');
-    style.textContent = '@keyframes ' + keyId + '{' +
-      '0%{transform:translateY(0) rotate(0deg) translateX(0)}' +
-      '40%{transform:translateY(40vh) rotate(120deg) translateX(' + drift + 'px)}' +
-      '100%{transform:translateY(110vh) rotate(360deg) translateX(' + (-drift/2) + 'px);opacity:0}' +
-    '}';
-    document.head.appendChild(style);
-    el.style.animation = keyId + ' ' + duration + 's linear forwards';
+    el.style.left      = left + 'vw';
+    el.style.fontSize  = size + 'rem';
+    el.style.animation = anim + ' ' + duration + 's ease-in forwards';
 
     container.appendChild(el);
-    setTimeout(function () {
-      el.remove();
-      style.remove();
-    }, (parseFloat(duration) + 0.5) * 1000);
+    setTimeout(function () { el.remove(); }, (parseFloat(duration) + 1) * 1000);
   }
 
   /* Initial burst */
   for (var i = 0; i < 10; i++) {
-    (function(delay){ setTimeout(spawnPetal, delay); })(i * 250);
+    setTimeout(spawnPetal, i * 200);
   }
   /* Continuous */
-  setInterval(spawnPetal, 650);
+  setInterval(spawnPetal, 700);
 })();
 
 
