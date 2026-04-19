@@ -20,6 +20,25 @@
         <span class="name">Fitri Sofia Alfian</span>
       </div>
       <p class="date">20 April 2024 — 20 April 2026</p>
+
+      <!-- Music Player -->
+      <audio id="audio" src="music/song.mp3" preload="none" loop></audio>
+      <div class="music-card">
+        <div class="music-card-inner">
+          <div class="music-left">
+            <span class="music-note">♪</span>
+            <div class="music-text">
+              <span class="music-title">Dari Planet Lain</span>
+              <span class="music-artist">Sal Priadi</span>
+            </div>
+          </div>
+          <button class="play-btn" id="playBtn">&#9654;</button>
+        </div>
+        <div class="music-message" id="musicMessage">
+          Masih ingat lagu ini? walaupun membosankan tapi lagu ini menjadi bukti perjalanan kita sampai sejauh ini <em>"My planet"</em> 🎵
+        </div>
+      </div>
+
       <a href="#letter" class="scroll-btn">Baca Suratku 💌</a>
     </div>
   </section>
@@ -156,25 +175,6 @@
       "Cinta sejati bukan tentang menemukan orang yang sempurna, tapi tentang melihat orang yang tidak sempurna dengan cara yang sempurna."
     </p>
   </section>
-
-  <!-- ── MUSIC PLAYER ── -->
-  <audio id="audio" src="music/song.mp3" preload="none" loop></audio>
-
-  <div class="music-player" id="musicPlayer">
-    <div class="music-message" id="musicMessage">
-      <p>Masih ingat lagu ini? walaupun membosankan tapi lagu ini menjadi bukti perjalanan kita sampai sejauh ini <em>"My planet"</em> 🎵</p>
-    </div>
-    <div class="music-bar">
-      <div class="music-info">
-        <span class="music-note">♪</span>
-        <div class="music-text">
-          <span class="music-title">Dari Planet Lain</span>
-          <span class="music-artist">Sal Priadi</span>
-        </div>
-      </div>
-      <button class="play-btn" id="playBtn" aria-label="Play">&#9654;</button>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
