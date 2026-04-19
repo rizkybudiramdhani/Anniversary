@@ -542,6 +542,104 @@ body {
 }
 
 /* Very small phones (≤360px) */
+/* ── Music Player ──────────────────────────── */
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.music-message {
+  background: linear-gradient(135deg, #1a0020, #6b0050);
+  color: var(--white);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 0.9rem 1.2rem;
+  text-align: center;
+  display: none;
+  border-top: 1px solid rgba(255,179,217,0.3);
+}
+
+.music-message.show {
+  display: block;
+  animation: fadeUp 0.5s ease both;
+}
+
+.music-message em {
+  color: var(--pink-light);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.music-bar {
+  background: rgba(26, 0, 32, 0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  border-top: 1px solid rgba(255,179,217,0.2);
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.music-note {
+  font-size: 1.4rem;
+  color: var(--pink);
+  animation: beat 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.music-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-title {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.music-artist {
+  color: var(--pink-light);
+  font-size: 0.75rem;
+}
+
+.play-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--pink), #c0006e);
+  color: var(--white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(233,30,140,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  padding-left: 3px; /* optical center for ▶ */
+}
+
+.play-btn:active {
+  transform: scale(0.92);
+}
+
+.play-btn.playing {
+  background: linear-gradient(135deg, #c0006e, var(--pink));
+  box-shadow: 0 4px 20px rgba(233,30,140,0.7);
+}
+
 @media (max-width: 360px) {
   .main-title          { font-size: 1.9rem; }
   .reasons-grid        { grid-template-columns: 1fr; }

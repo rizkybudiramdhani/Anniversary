@@ -1,3 +1,29 @@
+/* ── Music Player ───────────────────────────── */
+(function () {
+  var audio   = document.getElementById('audio');
+  var btn     = document.getElementById('playBtn');
+  var message = document.getElementById('musicMessage');
+  var shown   = false;
+
+  if (!btn || !audio) return;
+
+  btn.addEventListener('click', function () {
+    if (audio.paused) {
+      audio.play();
+      btn.innerHTML  = '&#9646;&#9646;'; /* ❚❚ pause */
+      btn.classList.add('playing');
+      if (!shown) {
+        shown = true;
+        message.classList.add('show');
+      }
+    } else {
+      audio.pause();
+      btn.innerHTML = '&#9654;'; /* ▶ play */
+      btn.classList.remove('playing');
+    }
+  });
+})();
+
 
 /* ── Envelope Open ──────────────────────────── */
 (function () {
